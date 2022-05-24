@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Grocery Checking App",
+    "icon": "./image/logo.png",
+    "android": {
+      "package": "com.deepak18.grocerycheckingapp"
+    }
+  }
+}

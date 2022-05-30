@@ -2,43 +2,57 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
 
-const BuyerHome = ({ item }) => {
+const BuyerHome = ({ item, navigation }) => {
   return (
     <Animatable.View
       iterationDelay={1000}
       iterationCount={2}
       animation="wobble"
     >
-      <View style={styles.container}>
-        <View style={{ alignItems: "center" }}>
-          <Text>{item.shopname.toUpperCase()}</Text>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.push("ShopDetails", {
+            item_name: item.item_name,
+            quantity: item.quantity,
+            price: item.price,
+            navigation: navigation,
+            item: item.id,
+            unit: item.unit,
+            shopName: item.shopname,
+          })
+        }
+      >
+        <View style={styles.container}>
+          <View style={{ alignItems: "center" }}>
+            <Text>{item.shopname.toUpperCase()}</Text>
+          </View>
+          <View style={styles.text}>
+            <Text style={styles.items}>{item.item_name}</Text>
+            <Text style={styles.quantity}>
+              {item.quantity} {item.unit}
+            </Text>
+          </View>
+          <View style={styles.text}>
+            <Text style={styles.price}>
+              ₹{item.price} /
+              {item.unit.includes("ltr") ? (
+                <Text>ltr</Text>
+              ) : item.unit.includes("kg") ? (
+                <Text>kg</Text>
+              ) : (
+                <Text>grm</Text>
+              )}
+            </Text>
+            <Text
+              style={{
+                opacity: 0,
+              }}
+            >
+              fasdfas
+            </Text>
+          </View>
         </View>
-        <View style={styles.text}>
-          <Text style={styles.items}>{item.item_name}</Text>
-          <Text style={styles.quantity}>
-            {item.quantity} {item.unit}
-          </Text>
-        </View>
-        <View style={styles.text}>
-          <Text style={styles.price}>
-            ₹{item.price} /
-            {item.unit.includes("ltr") ? (
-              <Text>ltr</Text>
-            ) : item.unit.includes("kg") ? (
-              <Text>kg</Text>
-            ) : (
-              <Text>grm</Text>
-            )}
-          </Text>
-          <Text
-            style={{
-              opacity: 0,
-            }}
-          >
-            fasdfas
-          </Text>
-        </View>
-      </View>
+      </TouchableOpacity>
     </Animatable.View>
   );
 };

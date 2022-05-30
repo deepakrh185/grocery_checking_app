@@ -1,25 +1,16 @@
 import React from "react";
-import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { firebase, db } from "../../firebase";
 
-const Header = ({ navigation, route }) => {
-  const { item_name, price, quantity, item,shopname } = route.params;
+const BuyerHeader = ({ navigation, route }) => {
+  const { item_name, price, quantity, item, shopname } = route.params;
 
-  const deleteItem = () => {
-    db.collection("seller")
-      .doc(firebase.auth().currentUser.email)
-      .collection("items")
-      .doc(item)
-      .delete({ item_name: item_name, quantity: quantity, price: price })
-      .then(() => navigation.push("Product"));
-  };
-  
   return (
     <View style={styles.container}>
       <View>
         <TouchableOpacity
-          onPress={() => navigation.push("Product")}
+          onPress={() => navigation.push("BuyerScreen")}
           style={{
             width: 40,
             height: 40,
@@ -27,6 +18,7 @@ const Header = ({ navigation, route }) => {
             borderWidth: 1,
             borderColor: "#B3B4B6",
             justifyContent: "center",
+            marginTop: 10,
             alignItems: "center",
           }}
         >
@@ -41,25 +33,18 @@ const Header = ({ navigation, route }) => {
       </View>
 
       <View>
-        <TouchableOpacity
-          onPress={() => deleteItem()}
+        <Text
           style={{
-            width: 40,
-            height: 40,
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: "#B3B4B6",
-            justifyContent: "center",
-            alignItems: "center",
+            color: "#000000",
+            fontSize: 22,
+            fontWeight: "bold",
+            marginTop: 12,
+            textAlign: "center",
+
           }}
         >
-          <Image
-            source={{
-              uri: "https://img.icons8.com/material/50/000000/filled-trash.png",
-            }}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
+          Time : 9:00 AM - 9:00 PM
+        </Text>
       </View>
     </View>
   );
@@ -81,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default BuyerHeader;

@@ -7,6 +7,7 @@ import Product from "./screens/Product";
 import SignUpScreen from "./screens/SignUpScreen";
 import Details from "./components/Seller/Details";
 import BuyerScreen from "./screens/BuyerScreen";
+import ShopDetails from "./components/Buyer/ShopDetails";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ export const SignedOutStack = () => (
       screenOptions={screenOptions}
     >
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="ShopDetails" component={ShopDetails} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="SelectionScreen" component={SelectionScreen} />
       <Stack.Screen name="BuyerScreen" component={BuyerScreen} />
